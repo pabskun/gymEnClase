@@ -21,5 +21,20 @@ router.get('/', async(req, res) =>{
     }
 });
 
+router.put('/:id', async(req,res)=>{
+    try{
+        const disease = await Disease.findByIdAndUpdate(req.params.id, req.body, {new : true, runValidators: true});
+
+        if(!disease){
+            return res.status(404).send();
+        }
+        res.status(200).send(disease); 
+    }catch(error){
+        res.status(400).send(error); 
+    }
+});
+
+//Agregar el método put para actualizar un documento
+
 
 module.exports = router;
