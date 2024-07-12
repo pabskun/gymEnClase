@@ -12,5 +12,14 @@ router.post('/', async(req, res)=>{
     }
 });
 
+router.get('/', async(req, res) =>{
+    try{
+        const diseases = await Disease.find();
+        res.status(200).send(diseases);
+    }catch(error){
+        res.status(500).send(error);
+    }
+});
+
 
 module.exports = router;
